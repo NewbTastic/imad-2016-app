@@ -6,21 +6,43 @@ var app = express();
 app.use(morgan('combined'));
 
 
-var articleOne = {
-    title: 'Article One | Akash Bagchi',
-    heading: 'Article One',
-    date: 'September 5 2016',
-    content:`
-    <p>
-        This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article
-    </p>
-    <p>
-        This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article
-    </p>
-    <p>
-        This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article
-    </p>`
+var articles = {
+    articleOne: {
+        title: 'Article One | Akash Bagchi',
+        heading: 'Article One',
+        date: 'September 5 2016',
+        content:`
+        <p>
+            This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article
+        </p>
+        <p>
+            This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article
+        </p>
+        <p>
+            This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article This is the content for my new article
+        </p>`
+    },
+    articleTwo: {
+        title: 'Article Two | Akash Bagchi',
+        heading: 'Article Two',
+        date: 'September 10 2016',
+        content:`
+        <p>
+            This is the content for my new article. 
+        </p>`
+        
+    },
+    articleThree: {
+        title: 'Article Three | Akash Bagchi',
+        heading: 'Article Three',
+        date: 'September 15 2016',
+        content:`
+        <p>
+            This is the content for my new article. 
+        </p>`
+    },
 };
+    
 
 function createTemplate (data) {
 var title = data.title;
@@ -66,15 +88,15 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get("/article-one", function (req,res) {
+app.get('/:articleName', function (req,res) {
 res.send(createTemplate(articleOne));
 });
 
-app.get("/article-two", function (req,res) {
+app.get('/article-two', function (req,res) {
     res.send("Article two requested and will be serverd here");
 });
 
-app.get("/article-three", function (req,res) {
+app.get('/article-three', function (req,res) {
     res.send("Article three requested and will be serverd here");
 });
 
